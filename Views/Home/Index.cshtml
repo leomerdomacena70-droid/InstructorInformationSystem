@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    var totalInstructors = (int)ViewBag.TotalInstructors;
+    var firstName = User.FindFirst("FirstName")?.Value;
+    var lastName = User.FindFirst("LastName")?.Value;
+}
+
+<div class="hero-banner">
+    <span class="eyebrow">Overview</span>
+    <h1 class="page-title">Dashboard</h1>
+    <p>Welcome back, @firstName.</p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="box">
+            <span class="icon-tile navy"><i class="bi bi-people-fill"></i></span>
+            <div class="text-muted">Total Instructors</div>
+            <div class="stat-number">@totalInstructors</div>
+            <a asp-controller="Instructors" asp-action="Index" class="btn btn-primary btn-sm">View Instructors</a>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="box">
+            <span class="icon-tile green"><i class="bi bi-person-plus-fill"></i></span>
+            <h5 class="fw-bold">Add Instructor</h5>
+            <p class="text-muted">Register a new instructor.</p>
+            <a asp-controller="Instructors" asp-action="Create" class="btn btn-solid-edit btn-sm">Add Instructor</a>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="box">
+            <span class="icon-tile amber"><i class="bi bi-folder2-open"></i></span>
+            <h5 class="fw-bold">Manage Records</h5>
+            <p class="text-muted">Search, view, edit, or delete records.</p>
+            <a asp-controller="Instructors" asp-action="Index" class="btn btn-outline-primary btn-sm">Manage Instructors</a>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <h5 class="fw-bold mb-2">Your Account</h5>
+    <div class="info-row"><span class="k">Full Name</span><strong>@firstName @lastName</strong></div>
+    <div class="info-row"><span class="k">Email Address</span><strong>@User.Identity?.Name</strong></div>
+    <div class="mt-3">
+        <a asp-controller="Account" asp-action="Profile" class="btn btn-outline-primary btn-sm">View My Profile</a>
+    </div>
+</div>
